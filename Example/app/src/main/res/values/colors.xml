@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#0080ff</color>
+    <color name="colorPrimaryDark">#55AAFF</color>
+    <color name="colorAccent">@color/base_color</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#00ff00</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="trans_black">#50000000</color>
+    <color name="base_color">#55AAFF</color>
+
+    <!-- 标题 重要文字颜色 -->
+    <color name="txt_title">#303133</color>
+    <!-- 正文 普通文字颜色 -->
+    <color name="txt_common">#606266</color>
+    <!-- 次要文字颜色 -->
+    <color name="txt_grey">#909399</color>
+    <!-- 辅助文字颜色 -->
+    <color name="txt_half_grey">#BEC7CF</color>
+    <!-- 辅助文字颜色 -->
+    <color name="background_common">#F1F4F5</color>
+
+    <color name="evaluation_value">#FFC12D</color>
+
+    <!-- 其它背景色或分割线相关 -->
+    <color name="bg_content">#f3f3f3</color>
+    <color name="divider_line">#d9d9d9</color>
+
+    <color name="percent_general_white">#ddffffff</color>
+    <color name="sheet_driver_line">#D7D7D9</color>
+</resources>
