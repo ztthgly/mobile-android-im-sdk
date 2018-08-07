@@ -1,10 +1,10 @@
 # 中通天鸿 Android SDK 开发指南
-##1.简介
+## 1.简介
 中通天鸿 Android SDK 是一个 Android 端客服系统访客解决方案，既包含了客服聊天逻辑管理，也提供了聊天界面，开发者可方便的将客服功能集成到自己的 APP 中。
-##2.快速集成
+## 2.快速集成
 只需简单 3 步，即可将客服功能加入你的 APP：
 
-####1.添加 SDK 到项目中。
+#### 1.添加 SDK 到项目中。
 快速接入（包含逻辑界面以及Lib库）
 
 
@@ -33,7 +33,7 @@ Eclipse接入:
 
 先下载 SDK，然后解压缩，将得到的 kit和core对应的aar包导入到你的工程中的libs目录，而后build path即可。
 
-####2.在你的 Application 类的 onCreate 函数中，加入以下初始化代码：
+#### 2.在你的 Application 类的 onCreate 函数中，加入以下初始化代码：
 
 ```
   public class YourApplication extends Application {
@@ -68,7 +68,7 @@ Eclipse接入:
 }
 ```
 
-####3.关联用户信息
+#### 3.关联用户信息
 坐席端想了解APP用户信息，以及主动给用户发送消息，就需要APP关联用户信息
 发送用户信息到客服端，调用_setUserInfo_实现
 
@@ -84,7 +84,7 @@ ZTIMCore.setUserInfo(userInfo);
 //注：请务必调用该方法，否则无法确保用户唯一性
 ```
 
-####4.切换用户信息
+#### 4.切换用户信息
 如若需要切换用户，请在_setUserInfo_前调用
 
 ```
@@ -92,7 +92,7 @@ ZTIMCore.logout();
 //建议与APP登出操作逻辑同步
 ```
 
-####5.在你的 APP 的合适页面添加客服入口按钮，并在响应函数中加入如下代码：
+#### 5.在你的 APP 的合适页面添加客服入口按钮，并在响应函数中加入如下代码：
 
 ```
  String title = "聊天窗口的标题";
@@ -114,7 +114,7 @@ ZTIMCore.logout();
 
 由于开发环境的不同，很多情况下会出现集成报错或者配置无效的问题。我们官网提供了demo源码，开发者可以参考源码；更多的时候是需要开发者自己本地调试代码，可以通过断点跟踪等基本且有效的方法来定位和排查问题。
 
-##3.单独引用lib
+## 3.单独引用lib
 假若APP想界面UI完全自定义也可单独引入lib库（常规接入逻辑如下，具体可参考kit源码）
 
 根目录build.gralde与2.1一样
@@ -138,14 +138,14 @@ implementation 'net.icsoc.im:core:+'
 “+”为当前版本号
 
 当用户APP需要界面完全自定义时，可单独引用lib库来实现。Application中对应初始化操作与步骤2相同，自定义界面设置步骤如下：
-####1.初始化咨询服务
+#### 1.初始化咨询服务
 在对应Activity的界面的onCreate方法中添加
 
 ```
 ZTIMCore.startService();
 ```
 
-####2.发送用户信息
+#### 2.发送用户信息
 ```
 //用户信息包含tid，userName，以及avatar，分别对应用户唯一标识、昵称、头像
 ZTIMUserInfo userInfo = new ZTIMUserInfo();
@@ -158,7 +158,7 @@ ZTIMCore.setUserInfo(userInfo);
 //注：请务必调用该方法，否则无法确保用户唯一性
 ```
 
-####3.切换用户信息
+#### 3.切换用户信息
 如若需要切换用户，请在_setUserInfo_前调用
 
 ```
@@ -166,7 +166,7 @@ ZTIMCore.logout();
 //建议与APP登出操作逻辑同步
 ```
 
-####4.订阅消息
+#### 4.订阅消息
 在对应Activity中添加
 
 ```
@@ -176,7 +176,7 @@ conversationManager.subscribe(this);
 // subscribe方法中传入IMessageSubscriber实现类，实现对应的方法即可收到对应的聊天消息
 ```
 
-####5.发送消息
+#### 5.发送消息
 
 ```
 ConversationManager conversationManager = ZTIMCore.getConversationManager();
@@ -186,7 +186,7 @@ ConversationManager conversationManager = ZTIMCore.getConversationManager();
 ```
 
 
-##4.UI自定义
+## 4.UI自定义
 为了咨询客服窗口的界面风格与集成中通天鸿IMSDK的APP能够尽量统一，中通天鸿IMSDK提供精简的UI自定义配置。
 配置选项接口名为 UICustomization，配置参数放在 ZTIMOptions 的 uiCustomization 变量中，开发者可在初始化 SDK 或者在运行时任意时候修改配置，当需要与 SDK 提供的默认界面不一样表现的地方，就修改对应的项，否则不赋值即可，界面会保留默认表现。修改各设置项后，都需要等到下次进入会话界面才会看到相应的更改。
 
@@ -218,7 +218,7 @@ hideKeyboardOnEnterConsult | boolean | 是否进入咨询时隐藏键盘 | 默�
 hidePhotographButton | boolean | 是否隐藏拍照按钮 | 默认为false，不隐藏
 hideSendPictureButton | boolean | 是否隐藏相册选择按钮 | 默认为false，不隐藏
 
-##5.APP浏览轨迹
+## 5.APP浏览轨迹
 ZTIMCore中提供方法trackUserAccess(String title, boolean isEnterPage)，
 进入界面在Activity或者Fragment中添加
 
@@ -241,7 +241,7 @@ ZTIMCore中提供方法trackUserAccess(String title, boolean isEnterPage)，
 ```
 
 
-##6.对应权限添加
+## 6.对应权限添加
 
 ```
 	<uses-permission android:name="android.permission.INTERNET" />
@@ -257,7 +257,7 @@ ZTIMCore中提供方法trackUserAccess(String title, boolean isEnterPage)，
 ```
 
 
-##7.混淆配置
+## 7.混淆配置
 如果你的 apk 最终会经过代码混淆，请在 proguard 配置文件中加入以下代码:
 
 ```
