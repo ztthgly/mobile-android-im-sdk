@@ -31,12 +31,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void init() {
         String tid = "4396";
-        ZTIMCore.init(this, "aabe12d634dd99881cd0974f1d77e425");
         ZTIMUserInfo userInfo = new ZTIMUserInfo();
         userInfo.tid = tid;
         userInfo.userName = "月月";
         userInfo.avatar = "http://img.qqu.cc/uploads/allimg/150530/1-1505301S542.jpg";
         ZTIMCore.setUserInfo(userInfo);
+
+        ZTIMCore.setConfiguration("aabe12d634dd99881cd0974f1d77e425", userInfo.tid, userInfo.avatar, userInfo.userName);
     }
 
     private void authOperation() {
