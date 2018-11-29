@@ -39,8 +39,7 @@ Eclipse接入:
   public class YourApplication extends Application {
     public void onCreate() {
         // ... your codes
-        // appKey 可以在中通天鸿->设置->APP接入 页面找到
-        ZTIMCore.init(this, "appKey");
+        ZTIMCore.init(this);
         // ... your codes
         //对应UI选项设置
         ZTIMOptions options = new ZTIMOptions();
@@ -70,22 +69,23 @@ Eclipse接入:
 
 #### 3.关联用户信息
 坐席端想了解APP用户信息，以及主动给用户发送消息，就需要APP关联用户信息
-发送用户信息到客服端，调用_setUserInfo_实现
+发送用户信息到客服端，调用_setConfiguration_实现
 
 ```
-//用户信息包含tid，userName，以及avatar，分别对应用户唯一标识、昵称、头像
-ZTIMUserInfo userInfo = new ZTIMUserInfo();
-userInfo.tid = "用户唯一标识";
-userInfo.userName = "用户昵称";
-userInfo.avatar = "用户头像";
-ZTIMCore.setUserInfo(userInfo);
+//用户信息包含appkey,tid，userName，以及avatar，分别对应用户唯一标识、昵称、头像
+// appKey 可以在中通天鸿->设置->APP接入 页面找到
+String appKey = "aabe12d634dd99881cd0974f1d77e425";
+String tid = "4396";
+String userName = "月月";
+String avatar = "http://img.qqu.cc/uploads/allimg/150530/1-1505301S542.jpg";
+ZTIMCore.setConfiguration(appKey, tid, avatar, userName);
 
-//建议将setUserInfo写在APP用户信息获取逻辑成功之后，注意tid为用户唯一标识符
-//注：请务必调用该方法，否则无法确保用户唯一性
+//建议将setConfiguration写在APP用户信息获取逻辑成功之后，注意tid为用户唯一标识符
+//注：请务必调用该方法，否则无法正常与客服建立会话
 ```
 
 #### 4.切换用户信息
-如若需要切换用户，请在_setUserInfo_前调用
+如若需要切换用户，请在_setConfiguration_前调用
 
 ```
 ZTIMCore.logout();
@@ -109,6 +109,7 @@ ZTIMCore.logout();
   * @param source  咨询的发起来源，包括发起咨询的title，描述信息等
   */
  IMKitCore.openServiceActivity(context, source);
+ // *注意:确保此时已经调用过setConfiguration方法,否则无法正常建立会话
 在打开的页面中，用户就可以咨询客服了。
 ```
 
