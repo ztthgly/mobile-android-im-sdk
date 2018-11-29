@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * Tips:
      * 当前Demo展示的用户为固定用户
-     * 使用方接入的时候，ZTIMCore.setUserInfo(userInfo)应该在APP用户体系对应的信息获取完成后调用
+     * 使用方接入的时候，ZTIMCore.setConfiguration()应该在APP用户体系对应的信息获取完成后调用
      *
      * init后面字符串，为APPKEY值，再接入处获取
      */
