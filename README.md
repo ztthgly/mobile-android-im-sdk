@@ -139,28 +139,30 @@ implementation 'net.icsoc.im:core:+'
 “+”为当前版本号
 
 当用户APP需要界面完全自定义时，可单独引用lib库来实现。Application中对应初始化操作与步骤2相同，自定义界面设置步骤如下：
-#### 1.初始化咨询服务
-在对应Activity的界面的onCreate方法中添加
+
+#### 1.绑定用户信息
+```
+//在对应Activity的界面的onCreate方法中添加,配置初始化
+//用户信息包含appkey,tid，userName，以及avatar，分别对应用户唯一标识、昵称、头像
+// appKey 可以在中通天鸿->设置->APP接入 页面找到
+String appKey = "aabe12d634dd99881cd0974f1d77e425";
+String tid = "4396";
+String userName = "月月";
+String avatar = "http://img.qqu.cc/uploads/allimg/150530/1-1505301S542.jpg";
+ZTIMCore.setConfiguration(appKey, tid, avatar, userName);
+
+//建议将setConfiguration写在APP用户信息获取逻辑成功之后，注意tid为用户唯一标识符
+//注：请务必调用该方法，否则无法正常与客服建立会话
+```
+#### 2.初始化咨询服务
+在对应触发开始聊天的入口处调用
 
 ```
 ZTIMCore.startService();
 ```
-
-#### 2.发送用户信息
-```
-//用户信息包含tid，userName，以及avatar，分别对应用户唯一标识、昵称、头像
-ZTIMUserInfo userInfo = new ZTIMUserInfo();
-userInfo.tid = "用户唯一标识";
-userInfo.userName = "用户昵称";
-userInfo.avatar = "用户头像";
-ZTIMCore.setUserInfo(userInfo);
-
-//建议将setUserInfo写在APP用户信息获取逻辑成功之后，注意tid为用户唯一标识符
-//注：请务必调用该方法，否则无法确保用户唯一性
-```
-
+*注:确保此时已经绑定过用户信息,具体细节处理参考kit源码
 #### 3.切换用户信息
-如若需要切换用户，请在_setUserInfo_前调用
+如若需要切换用户，请在_setConfiguration_前调用
 
 ```
 ZTIMCore.logout();
